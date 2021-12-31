@@ -1,0 +1,161 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local VuHackingGui = Instance.new("ScreenGui")
+local main = Instance.new("Frame")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local PrintText = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local Shadow = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local UpperTop = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local Arrow = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+
+--Properties:
+
+VuHackingGui.Name = "Vu HackingGui"
+VuHackingGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+VuHackingGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+main.Name = "main"
+main.Parent = VuHackingGui
+main.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+main.BorderSizePixel = 3
+main.Position = UDim2.new(0, 1033, 0, 201)
+main.Size = UDim2.new(0, 300, 0, 400)
+
+ScrollingFrame.Parent = main
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.Position = UDim2.new(0, 0, 0, 55)
+ScrollingFrame.Size = UDim2.new(0, 300, 0, 345)
+
+PrintText.Name = "PrintText"
+PrintText.Parent = ScrollingFrame
+PrintText.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+PrintText.Position = UDim2.new(0, 25, 0, 13)
+PrintText.Size = UDim2.new(0, 240, 0, 60)
+PrintText.ZIndex = 2
+PrintText.Font = Enum.Font.Code
+PrintText.Text = "Print \"Hi\""
+PrintText.TextColor3 = Color3.fromRGB(0, 0, 0)
+PrintText.TextScaled = true
+PrintText.TextSize = 14.000
+PrintText.TextWrapped = true
+
+UICorner.Parent = PrintText
+
+Shadow.Name = "Shadow"
+Shadow.Parent = ScrollingFrame
+Shadow.BackgroundColor3 = Color3.fromRGB(99, 99, 99)
+Shadow.Position = UDim2.new(0, 25, 0, 13)
+Shadow.Size = UDim2.new(0, 248, 0, 60)
+
+UICorner_2.Parent = Shadow
+
+UpperTop.Name = "UpperTop"
+UpperTop.Parent = main
+UpperTop.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
+UpperTop.Size = UDim2.new(0, 301, 0, 55)
+
+Title.Name = "Title"
+Title.Parent = UpperTop
+Title.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
+Title.BackgroundTransparency = 1.000
+Title.BorderSizePixel = 0
+Title.Size = UDim2.new(0, 300, 0, 55)
+Title.Font = Enum.Font.Code
+Title.Text = "Vu Hacking Gui"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextScaled = true
+Title.TextSize = 14.000
+Title.TextWrapped = true
+
+Arrow.Name = "Arrow"
+Arrow.Parent = UpperTop
+Arrow.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+Arrow.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Arrow.BorderSizePixel = 3
+Arrow.Position = UDim2.new(0, 292, 0, -12)
+Arrow.Size = UDim2.new(0, 25, 0, 25)
+Arrow.Font = Enum.Font.Code
+Arrow.Text = "↑"
+Arrow.TextColor3 = Color3.fromRGB(0, 0, 0)
+Arrow.TextScaled = true
+Arrow.TextSize = 14.000
+Arrow.TextWrapped = true
+
+UICorner_3.Parent = Arrow
+
+-- Scripts:
+
+local function EZNSNMJ_fake_script() -- main.main 
+	local script = Instance.new('LocalScript', main)
+
+	--Locals
+	local PtB = script.Parent.ScrollingFrame.PrintText
+	local MainFrame = script.Parent
+	local ScrollingFrame = MainFrame.ScrollingFrame
+	local TweenService = game:GetService("TweenService")
+	local Arrow = script.Parent.UpperTop.Arrow
+	
+	--Code
+	MainFrame.Active = true
+	MainFrame.Selectable = true
+	MainFrame.Draggable = true
+	
+	PtB.MouseButton1Click:Connect(function()
+		print("Hi!")
+	end)
+	
+	local Info = TweenInfo.new(
+		1.2,
+		Enum.EasingStyle.Quad,
+		Enum.EasingDirection.In,
+		0,
+		false,
+		0
+	)
+	
+	ArrowGoalsLess = 
+	{
+		Size =  UDim2.new(0.22, 0,0.087, 0)
+	}
+	ArrowGoalsMore = 
+	{
+		Size =  UDim2.new(0.22, 0,0.7, 0)
+	}
+	
+	ArrowGoalsLess2 = 
+	{
+		Size =  UDim2.new(0, 300,0, 0)
+	}
+	ArrowGoalsMore2 = 
+	{
+		Size =  UDim2.new(0, 300,0, 345)
+	}
+	
+	MainFrameSizeLess = TweenService:Create(MainFrame, Info, ArrowGoalsLess)
+	MainFrameSizeMore = TweenService:Create(MainFrame, Info, ArrowGoalsMore)
+	ScrollingFrameSizeLess = TweenService:Create(ScrollingFrame, Info, ArrowGoalsLess2)
+	ScrollingFrameSizeMore = TweenService:Create(ScrollingFrame, Info, ArrowGoalsMore2)
+	
+	Arrow.MouseButton1Click:Connect(function()
+		if Arrow.Text == "↑" then
+			Arrow.Text = "↓"
+			MainFrameSizeLess:Play()
+			ScrollingFrameSizeLess:Play()
+		elseif Arrow.Text == "↓" then
+			Arrow.Text = "↑"
+			MainFrameSizeMore:Play()
+			ScrollingFrameSizeMore:Play()
+		end
+	end)
+end
+coroutine.wrap(EZNSNMJ_fake_script)()
